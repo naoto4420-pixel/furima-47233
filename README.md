@@ -20,17 +20,17 @@
 
 ## itemsテーブル
 
-| Column                   | Type        | Options                         |
-| ------------------------ | ----------- | ------------------------------- |
-| name                     | string      | null: false                     |
-| explain                  | text        | null: false                     |
-| price                    | integer     | null: false                     |
-| category                 | integer     | null: false                     |
-| condition                | integer     | null: false                     |
-| shipping_costs           | integer     | null: false                     |
-| shipping_origin_region   | integer     | null: false                     |
-| estimated_shipping _date | integer     | null: false                     |
-| user_id                  | references  | null: false, foreign_key: true  |
+| Column                      | Type        | Options                         |
+| --------------------------- | ----------- | ------------------------------- |
+| name                        | string      | null: false                     |
+| explain                     | text        | null: false                     |
+| price                       | integer     | null: false                     |
+| category_id                 | integer     | null: false                     |
+| condition_id                | integer     | null: false                     |
+| shipping_cost_id            | integer     | null: false                     |
+| prefecture_id               | integer     | null: false                     |
+| estimated_shipping _date_id | integer     | null: false                     |
+| user                        | references  | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to  :user
@@ -43,7 +43,6 @@
 | ---------------- | ----------- | ------------------------------- |
 | item             | references  | null: false, foreign_key: true  |
 | user             | references  | null: false, foreign_key: true  |
-| shipping_address | references  | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to  :user
@@ -55,12 +54,13 @@
 
 | Column         | Type        | Options                         |
 | -------------- | ----------- | ------------------------------- |
-| post_code      | integer     | null: false                     |
-| prefecture     | integer     | null: false                     |
+| post_code      | string      | null: false                     |
+| prefecture_id  | integer     | null: false                     |
 | municipality   | string      | null: false                     |
 | street_address | string      | null: false                     |
 | building_name  | string      |                                 |
-| phone_number   | integer     | null: false                     |
+| phone_number   | string      | null: false                     |
+| order          | references  | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to  :order

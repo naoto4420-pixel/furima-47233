@@ -29,7 +29,7 @@
 | condition_id                | integer     | null: false                     |
 | shipping_cost_id            | integer     | null: false                     |
 | prefecture_id               | integer     | null: false                     |
-| estimated_shipping _date_id | integer     | null: false                     |
+| estimated_shipping_date_id  | integer     | null: false                     |
 | user                        | references  | null: false, foreign_key: true  |
 
 ### Association

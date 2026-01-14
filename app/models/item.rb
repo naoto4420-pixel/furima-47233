@@ -8,6 +8,8 @@ class Item < ApplicationRecord
   belongs_to :shipping_cost
   belongs_to :prefecture
   belongs_to :estimated_shipping_date
+  ## 画像管理用モデル
+  has_one_attached :image
 
   # バリデーション
   validates :name,                        presence: true

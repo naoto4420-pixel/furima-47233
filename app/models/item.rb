@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   # アソシエーション
   belongs_to :user
-  ## リスト用ActiveHash
+  ## リスト用ActiveHashのモデル
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
@@ -18,5 +18,11 @@ class Item < ApplicationRecord
   validates :shipping_cost_id,            presence: true
   validates :prefecture_id,               presence: true
   validates :estimated_shipping_date_id,  presence: true
+
+  validates :category_id,                 numericality: { other_than: 1, message: "can't be blank"}
+  validates :condition_id,                numericality: { other_than: 1, message: "can't be blank"}
+  validates :shipping_cost_id,            numericality: { other_than: 1, message: "can't be blank"}
+  validates :prefecture_id,               numericality: { other_than: 1, message: "can't be blank"}
+  validates :estimated_shipping_date_id,  numericality: { other_than: 1, message: "can't be blank"}
 
 end

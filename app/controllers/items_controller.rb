@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-  
+  # アクション前処理
+  before_action :authenticate_user!, only: [:new, :create]
+
   # アクション
   def index
   end

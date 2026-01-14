@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
 
   # ストロングパラメーターパラメーター設定
   def item_params
-    params.require(:item).permit(:image, :name, :explain, :price, :category_id, :condition_id, :shipping_cost_id, :prefecture_id, :estimated_shipping_date_id).merge(user_id: :current_user.id)
-
+    params.require(:item).permit(:image, :name, :explain, :price, :category_id, :condition_id, :shipping_cost_id, :prefecture_id, :estimated_shipping_date_id).merge(user_id: current_user.id)
+  end
 
 end

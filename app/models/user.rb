@@ -20,6 +20,6 @@ class User < ApplicationRecord
   validates :birthday,          presence: true
   
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください' 
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'は半角英字と数字を必ず両方使い、それらのみで構成してください。' 
 
 end

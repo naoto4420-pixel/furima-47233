@@ -1,4 +1,4 @@
-window.addEventListener('turbo:load', function(){
+const price = () => {
 
   // 要素取得
   const ele_item_price  = document.getElementById("item-price");    // 価格入力
@@ -16,4 +16,8 @@ window.addEventListener('turbo:load', function(){
     ele_profit.innerHTML      = ele_item_price.value - commission_fee;  // 販売利益挿入
   })
 
-})
+};
+
+// 画面ロードイベント
+window.addEventListener("turbo:load", price);
+window.addEventListener("turbo:render", price);

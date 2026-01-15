@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    name                          { Faker::Name.title }
+    name                          { Faker::Book.title }
     explain                       { Faker::Lorem.sentence }
     price                         { Faker::Number.between(from: 300, to: 9999999) }
     category_id                   { Faker::Number.between(from: 2, to: 11) }
@@ -13,7 +13,7 @@ FactoryBot.define do
 
     # テスト画像
     after(:build) do |item|
-      item.image.attach(io: File.open('spec/test_pic.png'), filename: 'test_pic.png', content_type: 'image/png')
+      item.image.attach(io: File.open('spec/images/test_pic.png'), filename: 'test_pic.png', content_type: 'image/png')
     end
 
   end

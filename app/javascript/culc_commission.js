@@ -5,6 +5,9 @@ const price = () => {
   const ele_commission  = document.getElementById("add-tax-price"); // 販売手数料
   const ele_profit      = document.getElementById("profit");        // 販売利益
 
+  // ele_item_priceが存在しない場合は、処理を終了する
+  if (!ele_item_price) return;
+
   // 販売手数料・販売利益表示
   ele_item_price.addEventListener('input', () => {
     // 変数宣言

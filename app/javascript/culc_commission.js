@@ -1,4 +1,4 @@
-window.addEventListener('load', function(){
+window.addEventListener('turbo:load', function(){
 
   // 要素取得
   const ele_item_price  = document.getElementById("item-price");    // 価格入力

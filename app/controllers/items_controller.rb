@@ -55,7 +55,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  # 商品出品者と操作するユーザーが同じことの確認
+  # 商品出品者と操作するユーザーが一致しないかの確認
   def ensure_correct_user
     if @item.user_id != current_user.id
       redirect_to action: :index

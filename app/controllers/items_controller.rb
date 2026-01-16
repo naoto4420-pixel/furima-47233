@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   # アクション前処理
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-
+  before_action :set_item,            only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!,  only: [:new, :create, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   # アクション
   def index
@@ -26,9 +26,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless user_signed_in? && (@item.user_id == current_user.id)
-      redirect_to action: :index
-    end
   end
 
   def update
@@ -56,6 +53,13 @@ class ItemsController < ApplicationController
   # itemデータ格納
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  # 商品出品者と操作するユーザーが同じことの確認
+  def ensure_correct_user
+    if @item.user_id != current_user.id
+      redirect_to action: :index
+    end
   end
 
 end

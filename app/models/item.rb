@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   # アソシエーション
-  belongs_to :user
+  belongs_to  :user
+  has_one     :order
   ## リスト用ActiveHashのモデル
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -28,4 +29,10 @@ class Item < ApplicationRecord
                                           numericality: { other_than: 1, message: "can't be blank" }
   validates :estimated_shipping_date_id,  presence: true,
                                           numericality: { other_than: 1, message: "can't be blank" }
+
+  # メソッド
+  def is_sold?
+    order.present?
+  end
+
 end

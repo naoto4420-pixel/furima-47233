@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   # アソシエーション
   has_many :items
+  has_many :orders
 
   # バリデーション
   validates :nickname, presence: true

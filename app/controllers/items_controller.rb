@@ -1,12 +1,13 @@
 class ItemsController < ApplicationController
   # アクション前処理
-  before_action :set_item,            only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!,  only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item,            only: [:show, :edit, :update, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :check_sold,          only: [:edit, :update]
 
   # アクション
   def index
-    @items = Item.includes(:user).order("created_at DESC")
+    @items = Item.includes(:user, :order).order('created_at DESC')
   end
 
   def new
@@ -55,11 +56,15 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  # 商品出品者と操作するユーザーが同じことの確認
+  # 商品出品者と操作するユーザーが一致しないかの確認
   def ensure_correct_user
-    if @item.user_id != current_user.id
-      redirect_to action: :index
-    end
+    return unless @item.user_id != current_user.id
+    redirect_to root_path
   end
 
+  # 売却済み商品は編集できないようにする
+  def check_sold
+    return unless @item.is_sold?
+    redirect_to root_path
+  end
 end

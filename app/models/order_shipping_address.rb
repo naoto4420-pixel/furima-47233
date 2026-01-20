@@ -1,9 +1,10 @@
 class OrderShippingAddress
 
+  # ActiveModel設定
   include ActiveModel::Model
   attr_accessor :post_code, :prefecture_id, :municipality, 
                 :street_address, :building_name, :phone_number,
-                :item_id, :user_id
+                :item_id, :user_id, :token
 
   # バリデーション
   with_options presence: true do
@@ -16,6 +17,7 @@ class OrderShippingAddress
     validates :phone_number, format: { with: /\A\d{10,11}\z/ }, allow_blank: true, if: -> { errors[:phone_number].blank? }
     validates :item_id
     validates :user_id
+    validates :token
   end
     
   # メソッド

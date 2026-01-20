@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   # アクション前処理
-  before_action :set_item,            only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!,  only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item,            only: [:show, :edit, :update, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :check_sold,          only: [:edit, :update]
 
   # アクション
   def index
@@ -58,7 +59,14 @@ class ItemsController < ApplicationController
   # 商品出品者と操作するユーザーが一致しないかの確認
   def ensure_correct_user
     if @item.user_id != current_user.id
-      redirect_to action: :index
+      redirect_to root_path
+    end
+  end
+
+  # 売却済み商品は編集できないようにする
+  def check_sold
+    if @item.is_sold?
+      redirect_to root_path
     end
   end
 

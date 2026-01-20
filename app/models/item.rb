@@ -31,6 +31,9 @@ class Item < ApplicationRecord
                                           numericality: { other_than: 1, message: "can't be blank" }
 
   # メソッド
+  ## 売却済み判定
+  ## 購入記録テーブルにあるかチェック
+  ## 戻り値：true…データあり、false…データなし
   def is_sold?
     order.present?
   end

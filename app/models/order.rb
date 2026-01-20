@@ -4,4 +4,7 @@ class Order < ApplicationRecord
   belongs_to  :user
   has_one     :shipping_address
 
+  # バリデーション
+  ## バリデーションはorder_shippingaddress.rbに記載。
+
 end

@@ -6,5 +6,4 @@ class Order < ApplicationRecord
 
   # バリデーション
   ## バリデーションはorder_shippingaddress.rbに記載。
-
 end

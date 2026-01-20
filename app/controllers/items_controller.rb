@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
 
   # アクション
   def index
-    @items = Item.includes(:user, :order).order("created_at DESC")
+    @items = Item.includes(:user, :order).order('created_at DESC')
   end
 
   def new
@@ -58,16 +58,13 @@ class ItemsController < ApplicationController
 
   # 商品出品者と操作するユーザーが一致しないかの確認
   def ensure_correct_user
-    if @item.user_id != current_user.id
-      redirect_to root_path
-    end
+    return unless @item.user_id != current_user.id
+    redirect_to root_path
   end
 
   # 売却済み商品は編集できないようにする
   def check_sold
-    if @item.is_sold?
-      redirect_to root_path
-    end
+    return unless @item.is_sold?
+    redirect_to root_path
   end
-
 end

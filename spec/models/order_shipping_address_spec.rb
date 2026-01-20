@@ -44,7 +44,7 @@ RSpec.describe OrderShippingAddress, type: :model do
       it '郵便番号が不正だと購入できない' do
         @order_shipping_address.post_code = '12345'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Post code is invalid")
+        expect(@order_shipping_address.errors.full_messages).to include('Post code is invalid')
       end
 
       it '都道府県が空だと購入できない' do
@@ -80,19 +80,19 @@ RSpec.describe OrderShippingAddress, type: :model do
       it '電話番号が半角数字以外だと購入できない' do
         @order_shipping_address.phone_number = '12345あいうえお'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_shipping_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it '電話番号が10文字未満だと購入できない' do
         @order_shipping_address.phone_number = '123456789'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_shipping_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it '電話番号が11文字を超えるだと購入できない' do
         @order_shipping_address.phone_number = '123456789012'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_shipping_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'ユーザーが紐づいていないと購入できない' do
@@ -112,7 +112,6 @@ RSpec.describe OrderShippingAddress, type: :model do
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include("Token can't be blank")
       end
-
     end
   end
 end

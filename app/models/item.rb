@@ -37,5 +37,4 @@ class Item < ApplicationRecord
   def is_sold?
     order.present?
   end
-
 end

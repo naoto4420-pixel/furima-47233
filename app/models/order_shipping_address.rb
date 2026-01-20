@@ -22,13 +22,23 @@ class OrderShippingAddress
     
   # メソッド
   def save
-    # 購入記録を保存する
-    order = Order.create(item_id: item_id, user_id: user_id)
 
-    #配送先情報を保存する
-    ShippingAddress.create(post_code: post_code, prefecture_id: prefecture_id, municipality: municipality, 
-                           street_address: street_address, building_name: building_name, phone_number: phone_number, 
-                           order_id: order.id)
+    # どちらかの保存が失敗したらすべてロールバック
+    ActiveRecord::Base.transaction do
+    
+      # 購入記録を保存する
+      order = Order.create(item_id: item_id, user_id: user_id)
+
+      #配送先情報を保存する
+      ShippingAddress.create(post_code: post_code, prefecture_id: prefecture_id, municipality: municipality, 
+                            street_address: street_address, building_name: building_name, phone_number: phone_number, 
+                            order_id: order.id)
+    end
+  
+    true
+  
+  rescue ActiveRecord::RecordInvalid
+    false
   end
 
 end

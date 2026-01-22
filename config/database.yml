@@ -30,7 +30,10 @@ test:
   host: localhost
   database: furima_47233_test
 
-production:     #Renderデプロイ用設定
+production:     # AWSデプロイ用設定
   <<: *default
-  adapter: postgresql
-  url: <%= ENV['DATABASE_URL'] %>
+  adapter: mysql2
+  database: furima-47233_production
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock

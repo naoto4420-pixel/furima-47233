@@ -99,3 +99,5 @@ gem 'gon'
 gem "aws-sdk-s3", require: false
 
 gem 'cgi'
+
+gem 'nokogiri', '>= 1.15.0', '< 1.18.0'
